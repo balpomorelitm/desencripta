@@ -67,7 +67,13 @@ document.addEventListener('DOMContentLoaded', () => {
         floppyButton.style.display = 'block';
         clearCluesAndNotes();
         roundNumber = 1;
+        myTeamClueHistory = [];
         updateRoundCounter();
+
+        // Refresh animated background for each new game
+        if (window.generateRandomBackground) {
+            window.generateRandomBackground();
+        }
     }
 
     function generateRoundCode() {
