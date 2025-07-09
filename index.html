@@ -10,32 +10,34 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <button id="new-game-button" class="primary-action">New Game</button>
     <div class="game-console white-team-theme">
         <div class="keywords-container">
-            <div class="keyword-slot"><span class="keyword-number">1</span>Castle</div>
-            <div class="keyword-slot"><span class="keyword-number">2</span>Forest</div>
-            <div class="keyword-slot"><span class="keyword-number">3</span>Dragon</div>
-            <div class="keyword-slot"><span class="keyword-number">4</span>Queen</div>
+            <div class="keyword-slot"><span class="keyword-number">1</span></div>
+            <div class="keyword-slot"><span class="keyword-number">2</span></div>
+            <div class="keyword-slot"><span class="keyword-number">3</span></div>
+            <div class="keyword-slot"><span class="keyword-number">4</span></div>
         </div>
 
-        <div class="code-generator-area">
-            <button class="floppy-disk-button"></button>
-            <div class="code-display" style="display: none;"></div>
-        </div>
-
-        <div class="tokens-area">
-            <div class="token-group">
-                <div>Interception</div>
-                <button class="token-button"><div class="token-display token-interception"></div></button>
-                <button class="token-button"><div class="token-display token-interception"></div></button>
+        <div class="middle-section">
+            <div class="code-generator-area">
+                <button class="floppy-disk-button"></button>
+                <div class="code-display" style="display: none;"></div>
             </div>
-            <div class="token-group">
-                <div>Miscommunication</div>
-                <button class="token-button"><div class="token-display token-miscommunication"></div></button>
+
+            <div class="tokens-area">
+                <div class="token-group">
+                    <div>Interception</div>
+                    <button class="token-button"><div class="token-display token-interception"></div></button>
+                    <button class="token-button"><div class="token-display token-interception"></div></button>
+                </div>
+                <div class="token-group">
+                    <div>Miscommunication</div>
+                    <button class="token-button"><div class="token-display token-miscommunication"></div></button>
+                    <button class="token-button"><div class="token-display token-miscommunication"></div></button>
+                </div>
             </div>
         </div>
-
-        <button class="primary-action new-round-button">New Round</button>
 
         <div class="encryptor-card">
             <input type="text" placeholder="Clue 1">
