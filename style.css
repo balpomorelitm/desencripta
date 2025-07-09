@@ -536,8 +536,9 @@ button.primary-action:hover {
 
 /* --- "How to Play" Button --- */
 #how-to-play-button {
-    position: absolute;
-    top: 70px; /* Positioned below the New Game button */
+    /* Place the button directly below the New Game button */
+    position: fixed;
+    top: 70px;
     right: 20px;
     width: auto;
     padding: 8px 15px;
