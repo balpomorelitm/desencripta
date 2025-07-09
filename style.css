@@ -202,6 +202,12 @@ body {
     font-weight: 100; /* Monofett is a thin font */
 }
 
+/* Larger centered title for the opponent clues section */
+.enemy-clues-title {
+    font-size: 2.4em; /* Double the default size */
+    text-align: center;
+}
+
 /* Style for the keyword numbers */
 .keyword-number {
     position: absolute;
