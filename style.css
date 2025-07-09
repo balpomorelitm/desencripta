@@ -227,7 +227,8 @@ body {
 /* New labels above clue inputs */
 .card-labels {
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between;  <-- REMOVE THIS */
+    gap: 8px; /* <-- ADD THIS (should match .clue-row) */
     font-size: 0.8em;
     opacity: 0.7;
     padding: 0 5px;
@@ -239,7 +240,8 @@ body {
 .card-labels .label-guess {
     width: 35px;
     text-align: center;
-    margin: 0 4px;
+    margin: 0; /* <-- REMOVE THE MARGIN */
+    flex-shrink: 0; /* Prevent labels from shrinking */
 }
 
 .clue-row {
