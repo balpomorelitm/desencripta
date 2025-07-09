@@ -19,6 +19,10 @@
     --font-digital: 'Orbitron', sans-serif;
     --font-handwritten: 'Kalam', cursive;
 
+    /* Fonts for retro-tech look */
+    --font-keyword: 'Workbench', sans-serif; /* For Keywords */
+    --font-ui-special: 'Monofett', monospace; /* For UI Titles */
+
     --color-background: #1a1a1a;
     --color-digital-red: #e50000;
     --color-digital-red-glow: rgba(255, 0, 0, 0.5);
@@ -160,7 +164,8 @@ body {
 .keyword-slot {
     flex-grow: 1;
     padding: 10px;
-    font-size: 1.1em;
+    font-family: var(--font-keyword); /* Use Workbench font */
+    font-size: 1.5em; /* Adjust size as needed */
     position: relative;
     padding-top: 25px;
     border: 2px solid;
@@ -168,6 +173,14 @@ body {
     text-align: center;
     font-weight: bold;
     text-transform: uppercase;
+}
+
+/* Special UI titles using Monofett */
+.ui-special-font {
+    font-family: var(--font-ui-special); /* Use Monofett font */
+    font-size: 1.2em; /* Adjust size for readability */
+    letter-spacing: 0.1em; /* Add space between characters */
+    font-weight: 100; /* Monofett is a thin font */
 }
 
 /* Style for the keyword numbers */
