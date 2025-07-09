@@ -13,3 +13,8 @@ python decrypto.py
 
 The script demonstrates how two devices (one for each team) keep their
 state in sync using a shared game seed.
+
+## CSS Fix: Header Alignment
+See [docs/column-header-alignment-fix.md](docs/column-header-alignment-fix.md) for
+an explanation of the change that keeps the clue headers aligned with the
+input columns.
