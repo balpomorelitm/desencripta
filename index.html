@@ -41,6 +41,11 @@
 
         <div class="encryptor-card">
             <h3 id="round-counter">ROUND 01</h3>
+            <div class="card-labels">
+                <span class="label-clue">Clue</span>
+                <span class="label-guess">Team guess</span>
+                <span class="label-guess">Enemies guess</span>
+            </div>
             <div class="clue-row">
                 <input type="text" class="clue-input" placeholder="Clue 1">
                 <input type="number" class="guess-box" maxlength="1">
@@ -56,9 +61,15 @@
                 <input type="number" class="guess-box" maxlength="1">
                 <input type="number" class="guess-box" maxlength="1">
             </div>
-            <button id="new-round-button" class="clear-button">New Round</button>
+            <div class="card-actions">
+                <button id="new-round-button">New Round</button>
+                <button id="given-clues-button">Given Clues</button>
+            </div>
+
+            <div id="given-clues-tooltip" class="tooltip" style="display: none;"></div>
         </div>
 
+        <h3>Enemies leaked clues 🔎</h3>
         <div class="opponent-notes-grid">
             <div class="clue-column">
                 <h4>1</h4>
