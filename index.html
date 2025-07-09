@@ -104,8 +104,8 @@
                 <input type="number" class="guess-box correct-answer-box" maxlength="1">
             </div>
             <div class="card-actions">
-                <button id="new-round-button">New Round</button>
-                <button id="given-clues-button">Given Clues</button>
+                <button id="new-round-button" class="retro-button">New Round</button>
+                <button id="given-clues-button" class="retro-button">Given Clues</button>
             </div>
 
             <div id="given-clues-tooltip" class="tooltip" style="display: none;"></div>
@@ -113,6 +113,11 @@
 
         <h3 class="ui-special-font enemy-clues-title">Enemies leaked clues 🔎</h3>
         <div class="opponent-notes-grid">
+            <div class="round-labels-column">
+                <span>R1</span><span>R2</span><span>R3</span><span>R4</span>
+                <span>R5</span><span>R6</span><span>R7</span><span>R8</span>
+            </div>
+
             <div class="clue-column">
                 <h4>1</h4>
                 <textarea></textarea>

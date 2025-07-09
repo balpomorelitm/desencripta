@@ -422,12 +422,24 @@ body {
 
 .opponent-notes-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: auto repeat(4, 1fr);
     gap: 8px;
     text-align: center;
 }
+
+/* NEW: Style for the round labels column */
+.round-labels-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    font-family: var(--font-terminal);
+    font-size: 1em;
+    color: #888;
+    padding: 10px 5px;
+}
 .opponent-notes-grid .clue-column textarea {
-    width: calc(100% - 12px);
+    width: 100%;
+    box-sizing: border-box;
     background-color: transparent;
     border: none;
     border-bottom: 1px solid;
@@ -461,6 +473,8 @@ body {
     margin-top: 0;
     border-bottom: 1px solid;
     padding-bottom: 5px;
+    font-family: var(--font-keyword);
+    font-size: 1.5em;
 }
 .white-team-theme .clue-column h4 { border-color: var(--color-white-team-border); }
 .black-team-theme .clue-column h4 { border-color: var(--color-black-team-border); }
@@ -511,6 +525,31 @@ button.primary-action {
 }
 button.primary-action:hover {
     background-color: #b00000;
+}
+
+/* Retro style for "New Round" and "Given Clues" buttons */
+.retro-button {
+    font-family: var(--font-terminal);
+    font-size: 1.1em;
+    text-transform: uppercase;
+    background-color: #E0E0E0;
+    color: #222;
+    border: 2px solid #555;
+    border-radius: 5px;
+    box-shadow: inset -2px -2px 0px rgba(0,0,0,0.25);
+    cursor: pointer;
+    transition: all 0.1s ease;
+}
+
+.retro-button:active {
+    box-shadow: inset 2px 2px 0px rgba(0,0,0,0.25);
+    transform: translateY(1px);
+}
+
+.black-team-theme .retro-button {
+    background-color: #555;
+    color: #E0E0E0;
+    border-color: #222;
 }
 
 /* Persistent new game button */
