@@ -618,11 +618,13 @@ button.primary-action:hover {
     /* Initially hidden for the reveal animation */
     opacity: 0;
     animation: fadeIn 0.5s ease 1.5s forwards; /* Fades in after the glitch reveal */
+    position: relative;
+    z-index: 1;
 }
 
 .glitch {
     font-family: 'Rampart One', sans-serif;
-    font-size: 6vw; /* Responsive font size */
+    font-size: 3vw; /* Responsive font size */
     color: #fff;
     position: relative;
     letter-spacing: 0.1em;
@@ -733,7 +735,7 @@ body::after {
         rgba(0, 0, 255, 0.06)
     );
     background-size: 100% 4px, 100% 100%;
-    z-index: 3000; /* Must be on top of everything, including the title */
+    z-index: 0; /* Positioned behind content */
     animation: scanline-anim 15s linear infinite;
 }
 
