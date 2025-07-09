@@ -37,7 +37,7 @@
 }
 
 body {
-    /* The background is now handled by the SVG */
+    /* Background handled by the gradient container */
     padding: 0;
     margin: 0;
     height: 100vh;
@@ -45,13 +45,78 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
-#svg {
+#gradient-container {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    z-index: -1; /* This is crucial to place it behind everything */
+    z-index: -1; /* Place it behind everything */
+    background: linear-gradient(135deg, #00adef, #0076e5);
+}
+
+#container-inside {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+}
+
+#circle-small,
+#circle-medium,
+#circle-large,
+#circle-xlarge,
+#circle-xxlarge {
+    background: #fff;
+    border-radius: 50%;
+    position: absolute;
+    animation: circle-small-scale 3s ease-in-out infinite alternate;
+    animation-timing-function: cubic-bezier(.6, 0, .4, 1);
+}
+
+#circle-small {
+    top: 200px;
+    left: -150px;
+    width: 300px;
+    height: 300px;
+    opacity: 0.4;
+    animation-delay: 0s;
+}
+
+#circle-medium {
+    top: 50px;
+    left: -300px;
+    width: 600px;
+    height: 600px;
+    opacity: 0.3;
+    animation-delay: 0.3s;
+}
+
+#circle-large {
+    top: -100px;
+    left: -450px;
+    width: 900px;
+    height: 900px;
+    opacity: 0.2;
+    animation-delay: 0.6s;
+}
+
+#circle-xlarge {
+    top: -250px;
+    left: -600px;
+    width: 1200px;
+    height: 1200px;
+    opacity: 0.1;
+    animation-delay: 0.9s;
+}
+
+#circle-xxlarge {
+    top: -400px;
+    left: -750px;
+    width: 1500px;
+    height: 1500px;
+    opacity: 0.05;
+    animation-delay: 1.2s;
 }
 
 /* --- 3. Main Game Console / Screen --- */
@@ -397,5 +462,14 @@ button.primary-action:hover {
     padding: 10px 20px;
     z-index: 1000;
     font-size: 1em;
+}
+
+@keyframes circle-small-scale {
+    0% {
+        transform: scale(1.0);
+    }
+    100% {
+        transform: scale(1.1);
+    }
 }
 
