@@ -76,7 +76,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (newGameButton) {
-        newGameButton.addEventListener('click', startNewGame);
+        newGameButton.addEventListener('click', () => {
+            startNewGame();
+            newGameButton.style.display = 'none';
+        });
     }
 
     tokenButtons.forEach(btn => {
@@ -92,5 +95,4 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    startNewGame();
 });

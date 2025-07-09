@@ -50,6 +50,7 @@ body {
 
 /* --- 3. Main Game Console / Screen --- */
 .game-console {
+    position: relative;
     width: 100%;
     max-width: 500px;
     padding: 20px;
@@ -308,11 +309,14 @@ button.primary-action:hover {
     background-color: #b00000;
 }
 
-/* Button above the console */
+/* Overlay start button */
 #new-game-button {
-    display: block;
-    margin: 0 auto 20px auto;
-    padding: 10px 25px;
-    font-size: 1.2em;
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    font-size: 1.5em;
 }
 
