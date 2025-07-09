@@ -87,7 +87,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (newGameButton) {
-        newGameButton.addEventListener('click', startNewGame);
+        newGameButton.addEventListener('click', () => {
+            startNewGame();
+            newGameButton.style.display = 'none';
+        });
     }
 
     if (newRoundButton) {
@@ -110,5 +113,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-    startNewGame();
 });
