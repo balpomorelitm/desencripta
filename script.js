@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const givenCluesTooltip = document.getElementById('given-clues-tooltip');
     const clueInputs = document.querySelectorAll('.encryptor-card .clue-input');
     const guessInputs = document.querySelectorAll('.encryptor-card .guess-box');
+    const correctAnswerBoxes = document.querySelectorAll('.correct-answer-box');
     const roundCounterEl = document.getElementById('round-counter');
     const noteAreas = document.querySelectorAll('.opponent-notes-grid textarea');
     const keywordSlots = document.querySelectorAll('.keyword-slot');
@@ -17,6 +18,16 @@ document.addEventListener('DOMContentLoaded', () => {
     let wordBank = [];
     let roundNumber = 1;
     let myTeamClueHistory = [];
+
+    // Ensure guess boxes only accept numbers 1-4
+    guessInputs.forEach(input => {
+        input.addEventListener('input', () => {
+            const num = parseInt(input.value, 10);
+            if (isNaN(num) || num < 1 || num > 4) {
+                input.value = '';
+            }
+        });
+    });
 
     function updateRoundCounter() {
         if (roundCounterEl) {
@@ -98,7 +109,14 @@ document.addEventListener('DOMContentLoaded', () => {
     if (newRoundButton) {
         newRoundButton.addEventListener('click', () => {
             const clues = Array.from(clueInputs).map(inp => inp.value.trim());
-            myTeamClueHistory.push({ round: roundNumber, clues });
+            const correctAnswers = Array.from(correctAnswerBoxes).map(inp => inp.value);
+
+            const roundHistory = clues.map((clue, index) => ({
+                clue: clue,
+                correctNumber: correctAnswers[index] || '?'
+            }));
+
+            myTeamClueHistory.push({ round: roundNumber, data: roundHistory });
 
             roundNumber++;
             updateRoundCounter();
@@ -111,10 +129,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (givenCluesButton) {
         givenCluesButton.addEventListener('click', () => {
-            const html = myTeamClueHistory
-                .map(entry => `Round ${entry.round}: ${entry.clues.join(', ')}`)
-                .join('<br>');
-            givenCluesTooltip.innerHTML = html;
+            const html = myTeamClueHistory.map(entry => {
+                const cluesText = entry.data
+                    .map(d => `${d.clue} (#${d.correctNumber})`)
+                    .join(', ');
+                return `<strong>Round ${entry.round}:</strong> ${cluesText}`;
+            }).join('<br>');
+
+            givenCluesTooltip.innerHTML = html || 'No clues given yet.';
 
             if (givenCluesTooltip.style.display === 'none' || !givenCluesTooltip.style.display) {
                 givenCluesTooltip.style.display = 'block';
