@@ -6,6 +6,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const newGameButton = document.getElementById('new-game-button');
     const tokenButtons = document.querySelectorAll('.token-button');
     const newRoundButton = document.getElementById('new-round-button');
+    const givenCluesButton = document.getElementById('given-clues-button');
+    const givenCluesTooltip = document.getElementById('given-clues-tooltip');
     const clueInputs = document.querySelectorAll('.encryptor-card .clue-input');
     const guessInputs = document.querySelectorAll('.encryptor-card .guess-box');
     const roundCounterEl = document.getElementById('round-counter');
@@ -14,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let wordBank = [];
     let roundNumber = 1;
+    let myTeamClueHistory = [];
 
     function updateRoundCounter() {
         if (roundCounterEl) {
@@ -95,12 +98,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (newRoundButton) {
         newRoundButton.addEventListener('click', () => {
+            const clues = Array.from(clueInputs).map(inp => inp.value.trim());
+            myTeamClueHistory.push({ round: roundNumber, clues });
+
             roundNumber++;
             updateRoundCounter();
             clueInputs.forEach(input => input.value = '');
             guessInputs.forEach(input => input.value = '');
             codeDisplay.style.display = 'none';
             floppyButton.style.display = 'block';
+        });
+    }
+
+    if (givenCluesButton) {
+        givenCluesButton.addEventListener('click', () => {
+            const html = myTeamClueHistory
+                .map(entry => `Round ${entry.round}: ${entry.clues.join(', ')}`)
+                .join('<br>');
+            givenCluesTooltip.innerHTML = html;
+
+            if (givenCluesTooltip.style.display === 'none' || !givenCluesTooltip.style.display) {
+                givenCluesTooltip.style.display = 'block';
+            } else {
+                givenCluesTooltip.style.display = 'none';
+            }
         });
     }
 

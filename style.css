@@ -196,6 +196,7 @@ body {
 
 /* --- 6. Notes / Clue History --- */
 .encryptor-card {
+    position: relative;
     padding: 15px;
     border-radius: 6px;
     margin-bottom: 25px;
@@ -213,6 +214,24 @@ body {
     text-transform: uppercase;
     opacity: 0.8;
     margin-top: 0;
+}
+
+/* New labels above clue inputs */
+.card-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8em;
+    opacity: 0.7;
+    padding: 0 5px;
+    margin-bottom: 5px;
+}
+.card-labels .label-clue {
+    flex-grow: 1;
+}
+.card-labels .label-guess {
+    width: 35px;
+    text-align: center;
+    margin: 0 4px;
 }
 
 .clue-row {
@@ -234,6 +253,30 @@ body {
     font-family: var(--font-digital);
     font-size: 1.5em;
     padding: 0;
+}
+.card-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+.card-actions button {
+    width: 48%;
+}
+
+/* Tooltip for showing past clues */
+.tooltip {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #222;
+    color: #eee;
+    border: 1px solid #888;
+    border-radius: 8px;
+    padding: 15px;
+    width: 250px;
+    box-shadow: 0 -4px 15px rgba(0,0,0,0.4);
+    z-index: 10;
 }
 .encryptor-card button.clear-button {
     width: auto;
