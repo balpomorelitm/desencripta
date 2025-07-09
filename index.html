@@ -22,6 +22,29 @@
     </div>
     <div class="game-console white-team-theme">
         <button id="new-game-button" class="primary-action">New Game</button>
+        <button id="how-to-play-button">How to Play</button>
+
+        <div id="how-to-play-modal" class="modal-overlay hidden">
+            <div class="modal-content">
+                <button class="modal-close-button">&times;</button>
+                <h2>How to Play</h2>
+                
+                <h4>The Goal</h4>
+                <p>Your team wins by correctly guessing the other team's secret code twice (<b>2 Interception Tokens</b>). Your team loses if you fail to guess your own code twice (<b>2 Miscommunication Tokens</b>).</p>
+                
+                <h4>Gameplay Loop (each round)</h4>
+                <ol>
+                    <li>One player on your team, the <strong>Encryptor</strong>, gets a secret 3-digit code (e.g., 4-1-2).</li>
+                    <li>The Encryptor gives three clues aloud, one for each keyword corresponding to the code.</li>
+                    <li>Both teams try to guess the secret code. Interceptions are only allowed from Round 2 onwards.</li>
+                    <li>After guesses are revealed, tokens are awarded and you must write down the opponent's clues in the correct columns on your sheet.</li>
+                </ol>
+
+                <p class="attribution">
+                    This is a fan-made project based on the board game <strong>DECRYPTO</strong>. If you enjoy it, please support the creators by buying the original game!
+                </p>
+            </div>
+        </div>
         <div class="keywords-container">
             <div class="keyword-slot"><span class="keyword-number">1</span></div>
             <div class="keyword-slot"><span class="keyword-number">2</span></div>
