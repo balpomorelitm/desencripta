@@ -19,6 +19,23 @@ document.addEventListener('DOMContentLoaded', () => {
     let roundNumber = 1;
     let myTeamClueHistory = [];
 
+    function randomColor() {
+        const h = Math.floor(Math.random() * 360);
+        const s = 60 + Math.floor(Math.random() * 40);
+        const l = 50 + Math.floor(Math.random() * 10);
+        return `hsl(${h}, ${s}%, ${l}%)`;
+    }
+
+    function generateRandomGradient() {
+        const container = document.getElementById('gradient-container');
+        if (!container) return;
+        const c1 = randomColor();
+        const c2 = randomColor();
+        container.style.background = `linear-gradient(135deg, ${c1}, ${c2})`;
+    }
+
+    window.generateRandomGradient = generateRandomGradient;
+
     // Ensure guess boxes only accept numbers 1-4
     guessInputs.forEach(input => {
         input.addEventListener('input', () => {
@@ -81,9 +98,9 @@ document.addEventListener('DOMContentLoaded', () => {
         myTeamClueHistory = [];
         updateRoundCounter();
 
-        // Refresh animated background for each new game
-        if (window.generateRandomBackground) {
-            window.generateRandomBackground();
+        // Refresh background gradient for each new game
+        if (window.generateRandomGradient) {
+            window.generateRandomGradient();
         }
     }
 
@@ -158,6 +175,11 @@ document.addEventListener('DOMContentLoaded', () => {
             display.classList.toggle('active');
         });
     });
+
+    // Initial background on page load
+    if (window.generateRandomGradient) {
+        window.generateRandomGradient();
+    }
 
 
 
