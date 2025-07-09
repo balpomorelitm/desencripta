@@ -204,7 +204,7 @@ body {
 
 /* Larger centered title for the opponent clues section */
 .enemy-clues-title {
-    font-size: 2.4em; /* Double the default size */
+    font-size: 1.92em; /* 20% smaller than before */
     text-align: center;
 }
 
