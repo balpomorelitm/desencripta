@@ -84,11 +84,14 @@ function init(){
     requestAnimationFrame(animate);
 }
 
-function randomize(){
+function randomize() {
     settings = {
-        lines: parseInt(5 + Math.random() * 45),
-        amplitudeX: parseInt(20 + Math.random()* 300),
-        amplitudeY: parseInt(Math.random() * 200),
+        // --- MODIFIED VALUES FOR A CALMER EFFECT ---
+        lines: parseInt(5 + Math.random() * 15),      // Fewer lines (Max 20 instead of 50)
+        amplitudeX: parseInt(150 + Math.random() * 100), // Less horizontal variation
+        amplitudeY: parseInt(20 + Math.random() * 30), // Flatter waves
+        // --- END OF MODIFICATIONS ---
+
         hueStartColor: parseInt(Math.random() * 360),
         saturationStartColor: 74,
         lightnessStartColor: 67,
@@ -98,7 +101,7 @@ function randomize(){
         smoothness: 1 + parseInt(Math.random() * 9),
         offsetX: parseInt(-20 + Math.random() * 40),
         fill: Math.random() > 0.3,
-        crazyness: Math.random() > 0.9
+        crazyness: false // Crazyness is disabled for a calmer effect
     };
     svg = document.getElementById('svg');
     if (!svg) return;
