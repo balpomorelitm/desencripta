@@ -119,17 +119,27 @@ body {
 }
 
 /* Button to generate the code, styled like a floppy disk */
+
+/* Container for the floppy button and tokens */
+.middle-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
 .code-generator-area {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 20px;
+    margin-right: 20px;
     min-height: 50px;
 }
 
 .floppy-disk-button {
-    width: 50px;
-    height: 50px;
+    width: 90px;
+    height: 90px;
+    flex-shrink: 0;
     background-color: #555;
     border: 2px solid #888;
     border-radius: 4px;
@@ -152,8 +162,9 @@ body {
 /* --- 5. Token Display --- */
 .tokens-area {
     display: flex;
-    justify-content: space-around;
-    margin-bottom: 20px;
+    justify-content: center;
+    gap: 20px;
+    flex-grow: 1;
 }
 .token-group {
     text-align: center;
@@ -295,5 +306,13 @@ button.primary-action {
 }
 button.primary-action:hover {
     background-color: #b00000;
+}
+
+/* Button above the console */
+#new-game-button {
+    display: block;
+    margin: 0 auto 20px auto;
+    padding: 10px 25px;
+    font-size: 1.2em;
 }
 
