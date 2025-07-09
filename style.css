@@ -19,12 +19,12 @@
     --font-digital: 'Orbitron', sans-serif;
     --font-handwritten: 'Kalam', cursive;
     --font-keyword: 'Workbench', sans-serif;
-    --font-ui-special: 'Monofett', monospace;
+    --font-ui-special: 'Bungee Shade', sans-serif;
     --font-terminal: 'VT323', monospace; /* For terminal-style text */
 
     /* Fonts for retro-tech look */
     --font-keyword: 'Workbench', sans-serif; /* For Keywords */
-    --font-ui-special: 'Monofett', monospace; /* For UI Titles */
+    --font-ui-special: 'Bungee Shade', sans-serif; /* For UI Titles */
 
     --color-background: #1a1a1a;
     --color-digital-red: #e50000;
@@ -44,16 +44,15 @@
 }
 
 body {
-    /* Background handled by the gradient container */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 0;
+    padding: 40px 20px; /* Add some padding so the console isn't stuck to the edges */
     margin: 0;
-    height: 100vh;
-    overflow: hidden; /* Prevents scrollbars from the animation */
+    min-height: 100vh; /* Use min-height instead of height */
+    overflow-y: auto; /* Allow vertical scrolling */
     font-family: 'Roboto', sans-serif;
+    display: flex; /* Use flexbox to center content */
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
 }
 
 #gradient-container {
@@ -135,6 +134,7 @@ body {
     /* We need to ensure the console has a z-index to stay on top */
     z-index: 1;
     position: relative;
+    margin: auto; /* Helps with centering and scrolling behavior */
     width: 100%;
     max-width: 500px;
     padding: 20px;
@@ -174,11 +174,12 @@ body {
 
 .keyword-slot {
     flex-grow: 1;
-    padding: 10px;
-    font-family: var(--font-keyword); /* Use Workbench font */
-    font-size: 1.5em; /* Adjust size as needed */
+    padding: 10px 5px; /* Adjust padding for better text alignment */
+    font-family: var(--font-keyword); /* Applies Workbench font */
+    font-size: 1.1em; /* Reduced font size to fit */
+    line-height: 1.2; /* Adjust line height for wrapped text */
+    word-wrap: break-word; /* Allows long words to break and wrap */
     position: relative;
-    padding-top: 10px;
     border: 1px solid #5C0000;
     border-radius: 4px;
     text-align: center;
@@ -186,7 +187,6 @@ body {
     text-transform: uppercase;
     background-color: #1A0000;
     color: var(--color-digital-red, #e50000);
-    font-family: var(--font-digital, 'Orbitron', sans-serif);
     text-shadow: 0 0 6px var(--color-digital-red-glow, rgba(255,0,0,0.5));
     box-shadow: inset 0 0 8px rgba(0,0,0,0.5);
     display: flex;
@@ -194,12 +194,12 @@ body {
     justify-content: center;
 }
 
-/* Special UI titles using Monofett */
+/* Special UI titles using Bungee Shade */
 .ui-special-font {
-    font-family: var(--font-ui-special); /* Use Monofett font */
+    font-family: var(--font-ui-special); /* Use Bungee Shade font */
     font-size: 1.2em; /* Adjust size for readability */
     letter-spacing: 0.1em; /* Add space between characters */
-    font-weight: 100; /* Monofett is a thin font */
+    font-weight: 100;
 }
 
 /* Larger centered title for the opponent clues section */
