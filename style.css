@@ -297,6 +297,9 @@ body {
 .token-group {
     text-align: center;
 }
+.token-group .ui-special-font {
+    font-size: 0.6em;
+}
 .token-button {
     background: none;
     border: none;
@@ -305,11 +308,11 @@ body {
 }
 .token-display {
     display: inline-block;
-    width: 30px;
-    height: 30px;
+    width: 15px;
+    height: 15px;
     border-radius: 50%;
-    border: 3px solid var(--token-border);
-    margin: 0 5px;
+    border: 2px solid var(--token-border);
+    margin: 0 3px;
     opacity: 0.3;
     transition: opacity 0.2s;
 }
