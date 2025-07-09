@@ -1,46 +1,47 @@
 import random
+import json  # Added for loading keywords from JSON
 
 class DecryptoGame:
     """
     Manages the game state and logic for a single team's device in Decrypto.
     """
     
-    # A comprehensive list of keywords should be used in the final app.
-    # This is a sample list for demonstration.
-    MASTER_KEYWORD_LIST = [
-        "CASTLE", "FOREST", "DRAGON", "QUEEN", "SWORD", "MAGIC", "WIZARD", "GHOST",
-        "PIRATE", "TREASURE", "ISLAND", "OCEAN", "SHIP", "STORM", "COMPASS", "MAP",
-        "PLANET", "ALIEN", "ROCKET", "STAR", "MOON", "GALAXY", "ROBOT", "LASER",
-        "DETECTIVE", "MYSTERY", "SECRET", "SPY", "CODE", "NIGHT", "SHADOW", "CLOCK",
-        "EGYPT", "PYRAMID", "MUMMY", "DESERT", "CAT", "RIVER", "HIEROGLYPH", "SAND",
-        "HOSPITAL", "DOCTOR", "VIRUS", "MEDICINE", "NURSE", "PATIENT", "SURGERY", "MASK"
-    ]
+    # The master keyword list is loaded from an external JSON file at runtime.
 
-    def __init__(self, game_seed: str, team_color: str):
+    def __init__(self, game_seed: str, team_color: str, keywords_file='keywords.json'):
         """
         Initializes the game on a device.
 
         Args:
-            game_seed (str): The shared seed for the game, entered by players on both devices.
+            game_seed (str): The shared seed for the game.
             team_color (str): The color of the team using this device ('white' or 'black').
+            keywords_file (str): The path to the JSON file with the keyword bank.
         """
         if team_color.lower() not in ['white', 'black']:
             raise ValueError("Team color must be 'white' or 'black'")
-            
+
         self.game_seed = game_seed
         self.team_color = team_color.lower()
         self.round_number = 1
-        
+
+        # --- Load Master Keyword List from JSON ---
+        try:
+            with open(keywords_file, 'r', encoding='utf-8') as f:
+                # We only need the 'word' for the game logic, and we convert it to uppercase
+                self.MASTER_KEYWORD_LIST = [item['word'].upper() for item in json.load(f)]
+        except FileNotFoundError:
+            raise FileNotFoundError(f"Error: The keywords file '{keywords_file}' was not found.")
+        except json.JSONDecodeError:
+            raise ValueError(f"Error: The file '{keywords_file}' is not a valid JSON file.")
+
         # --- State for my team ---
         self.my_keywords = []
         self.my_miscommunication_tokens = 0
         self.my_interception_tokens = 0
-        
+
         # --- State for tracking the opponent ---
-        # This dictionary will store all clues given by the opponent.
-        # e.g., {1: ["Night", "Freddy"], 2: ["Dog"], 3: ["Dawn"], 4: []}
         self.opponent_clue_history = {1: [], 2: [], 3: [], 4: []}
-        
+
         # --- Game Setup ---
         self._generate_keywords()
 
@@ -52,16 +53,18 @@ class DecryptoGame:
         return random.Random(hashed_seed)
 
     def _generate_keywords(self):
-        """Deterministically generates keywords for both teams from the seed."""
-        # This ensures the list is shuffled the same way on every device with the same seed.
+        """Deterministically generates keywords for both teams from the loaded list."""
         rng = self._get_seeded_random("KEYWORDS")
-        
+
+        if len(self.MASTER_KEYWORD_LIST) < 8:
+            raise ValueError("The keyword list must contain at least 8 words.")
+
         shuffled_list = self.MASTER_KEYWORD_LIST[:]
         rng.shuffle(shuffled_list)
-        
+
         white_keywords = shuffled_list[0:4]
         black_keywords = shuffled_list[4:8]
-        
+
         if self.team_color == 'white':
             self.my_keywords = white_keywords
         else:
