@@ -18,6 +18,9 @@
     --font-sans: 'Roboto', sans-serif;
     --font-digital: 'Orbitron', sans-serif;
     --font-handwritten: 'Kalam', cursive;
+    --font-keyword: 'Workbench', sans-serif;
+    --font-ui-special: 'Monofett', monospace;
+    --font-terminal: 'VT323', monospace; /* For terminal-style text */
 
     /* Fonts for retro-tech look */
     --font-keyword: 'Workbench', sans-serif; /* For Keywords */
@@ -419,8 +422,8 @@ body {
     border: none;
     border-bottom: 1px solid;
     border-radius: 0;
-    font-family: var(--font-handwritten);
-    font-size: 1.1em;
+    font-family: var(--font-terminal); /* Use VT323 font */
+    font-size: 1.2em; /* Adjust size for a classic terminal look */
     padding: 2px 5px;
     margin-bottom: 4px;
     height: 20px;
