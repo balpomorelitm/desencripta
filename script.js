@@ -5,13 +5,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const codeDisplay = document.querySelector('.code-display');
     const newGameButton = document.getElementById('new-game-button');
     const tokenButtons = document.querySelectorAll('.token-button');
-    const clearButton = document.querySelector('.encryptor-card .clear-button');
-    const clueInputs = document.querySelectorAll('.encryptor-card input');
+    const newRoundButton = document.getElementById('new-round-button');
+    const clueInputs = document.querySelectorAll('.encryptor-card .clue-input');
+    const guessInputs = document.querySelectorAll('.encryptor-card .guess-box');
+    const roundCounterEl = document.getElementById('round-counter');
     const noteAreas = document.querySelectorAll('.opponent-notes-grid textarea');
     const keywordSlots = document.querySelectorAll('.keyword-slot');
 
     let wordBank = [];
     let roundNumber = 1;
+
+    function updateRoundCounter() {
+        if (roundCounterEl) {
+            const displayNum = String(roundNumber).padStart(2, '0');
+            roundCounterEl.textContent = `ROUND ${displayNum}`;
+        }
+    }
 
     async function loadWordBank() {
         if (wordBank.length) return;
@@ -42,6 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function clearCluesAndNotes() {
         clueInputs.forEach(input => input.value = '');
+        guessInputs.forEach(input => input.value = '');
         noteAreas.forEach(area => area.value = '');
     }
 
@@ -54,6 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
         floppyButton.style.display = 'block';
         clearCluesAndNotes();
         roundNumber = 1;
+        updateRoundCounter();
     }
 
     function generateRoundCode() {
@@ -79,6 +90,17 @@ document.addEventListener('DOMContentLoaded', () => {
         newGameButton.addEventListener('click', startNewGame);
     }
 
+    if (newRoundButton) {
+        newRoundButton.addEventListener('click', () => {
+            roundNumber++;
+            updateRoundCounter();
+            clueInputs.forEach(input => input.value = '');
+            guessInputs.forEach(input => input.value = '');
+            codeDisplay.style.display = 'none';
+            floppyButton.style.display = 'block';
+        });
+    }
+
     tokenButtons.forEach(btn => {
         btn.addEventListener('click', () => {
             const display = btn.querySelector('.token-display');
@@ -86,11 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    if (clearButton) {
-        clearButton.addEventListener('click', () => {
-            clueInputs.forEach(input => input.value = '');
-        });
-    }
+
 
     startNewGame();
 });

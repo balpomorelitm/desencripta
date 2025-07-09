@@ -40,10 +40,23 @@
         </div>
 
         <div class="encryptor-card">
-            <input type="text" placeholder="Clue 1">
-            <input type="text" placeholder="Clue 2">
-            <input type="text" placeholder="Clue 3">
-            <button class="clear-button">Clear</button>
+            <h3 id="round-counter">ROUND 01</h3>
+            <div class="clue-row">
+                <input type="text" class="clue-input" placeholder="Clue 1">
+                <input type="number" class="guess-box" maxlength="1">
+                <input type="number" class="guess-box" maxlength="1">
+            </div>
+            <div class="clue-row">
+                <input type="text" class="clue-input" placeholder="Clue 2">
+                <input type="number" class="guess-box" maxlength="1">
+                <input type="number" class="guess-box" maxlength="1">
+            </div>
+            <div class="clue-row">
+                <input type="text" class="clue-input" placeholder="Clue 3">
+                <input type="number" class="guess-box" maxlength="1">
+                <input type="number" class="guess-box" maxlength="1">
+            </div>
+            <button id="new-round-button" class="clear-button">New Round</button>
         </div>
 
         <div class="opponent-notes-grid">
