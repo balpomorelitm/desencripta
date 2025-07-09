@@ -92,7 +92,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (newGameButton) {
         newGameButton.addEventListener('click', () => {
             startNewGame();
-            newGameButton.style.display = 'none';
         });
     }
 
