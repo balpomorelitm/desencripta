@@ -12,49 +12,85 @@
 <body>
     <div class="game-console white-team-theme">
         <div class="keywords-container">
-            <div class="keyword-slot">Castle</div>
-            <div class="keyword-slot">Forest</div>
-            <div class="keyword-slot">Dragon</div>
-            <div class="keyword-slot">Queen</div>
+            <div class="keyword-slot"><span class="keyword-number">1</span>Castle</div>
+            <div class="keyword-slot"><span class="keyword-number">2</span>Forest</div>
+            <div class="keyword-slot"><span class="keyword-number">3</span>Dragon</div>
+            <div class="keyword-slot"><span class="keyword-number">4</span>Queen</div>
         </div>
-        <div class="code-display">3-1-4</div>
+
+        <div class="code-generator-area">
+            <button class="floppy-disk-button"></button>
+            <div class="code-display" style="display: none;"></div>
+        </div>
+
         <div class="tokens-area">
             <div class="token-group">
                 <div>Interception</div>
-                <span class="token-interception"></span>
-                <span class="token-interception"></span>
+                <button class="token-button"><div class="token-display token-interception"></div></button>
+                <button class="token-button"><div class="token-display token-interception"></div></button>
             </div>
             <div class="token-group">
                 <div>Miscommunication</div>
-                <span class="token-miscommunication"></span>
+                <button class="token-button"><div class="token-display token-miscommunication"></div></button>
             </div>
         </div>
-        <div class="input-group">
-            <input type="text" placeholder="Enter clue" />
+
+        <button class="primary-action new-round-button">New Round</button>
+
+        <div class="encryptor-card">
+            <input type="text" placeholder="Clue 1">
+            <input type="text" placeholder="Clue 2">
+            <input type="text" placeholder="Clue 3">
+            <button class="clear-button">Clear</button>
         </div>
-        <button class="primary-action">Submit</button>
-        <div class="clue-history-container">
-            <div class="clue-history-grid">
-                <div class="clue-column">
-                    <h4>1</h4>
-                    <div class="clue-item">Fire</div>
-                    <div class="clue-item">Moat</div>
-                </div>
-                <div class="clue-column">
-                    <h4>2</h4>
-                    <div class="clue-item">Bricks</div>
-                    <div class="clue-item">Trees</div>
-                </div>
-                <div class="clue-column">
-                    <h4>3</h4>
-                    <div class="clue-item">Crown</div>
-                    <div class="clue-item">Scales</div>
-                </div>
-                <div class="clue-column">
-                    <h4>4</h4>
-                </div>
+
+        <div class="opponent-notes-grid">
+            <div class="clue-column">
+                <h4>1</h4>
+                <textarea></textarea>
+                <textarea></textarea>
+                <textarea></textarea>
+                <textarea></textarea>
+                <textarea></textarea>
+                <textarea></textarea>
+                <textarea></textarea>
+                <textarea></textarea>
+            </div>
+            <div class="clue-column">
+                <h4>2</h4>
+                <textarea></textarea>
+                <textarea></textarea>
+                <textarea></textarea>
+                <textarea></textarea>
+                <textarea></textarea>
+                <textarea></textarea>
+                <textarea></textarea>
+                <textarea></textarea>
+            </div>
+            <div class="clue-column">
+                <h4>3</h4>
+                <textarea></textarea>
+                <textarea></textarea>
+                <textarea></textarea>
+                <textarea></textarea>
+                <textarea></textarea>
+                <textarea></textarea>
+                <textarea></textarea>
+                <textarea></textarea>
+            </div>
+            <div class="clue-column">
+                <h4>4</h4>
+                <textarea></textarea>
+                <textarea></textarea>
+                <textarea></textarea>
+                <textarea></textarea>
+                <textarea></textarea>
+                <textarea></textarea>
+                <textarea></textarea>
+                <textarea></textarea>
             </div>
         </div>
     </div>
+    <script src="script.js"></script>
 </body>
 </html>
