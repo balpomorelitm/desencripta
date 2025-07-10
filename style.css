@@ -679,6 +679,14 @@ button.primary-action:hover {
     margin-top: 20px;
 }
 
+/* Small footer text at the bottom of the page */
+.page-footer {
+    font-size: 0.8em;
+    text-align: center;
+    opacity: 0.8;
+    margin-top: 20px;
+}
+
 /* Utility class to hide elements */
 .hidden {
     display: none !important;
