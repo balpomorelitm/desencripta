@@ -494,7 +494,7 @@ body {
 .clue-column {
     border: 2px solid;
     border-radius: 6px;
-    padding: 10px;
+    padding: 5px; /* reduce internal spacing */
     min-height: 150px;
 }
 .white-team-theme .clue-column { border-color: var(--color-white-team-border); }
@@ -502,6 +502,7 @@ body {
 
 .clue-column h4 {
     margin-top: 0;
+    margin-bottom: 0; /* Ensure consistent spacing for R1 textareas */
     border-bottom: 1px solid;
     padding-bottom: 5px;
     font-family: var(--font-keyword);
