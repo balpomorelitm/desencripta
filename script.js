@@ -4,6 +4,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const floppyButton = document.querySelector('.floppy-disk-button');
     const codeDisplay = document.querySelector('.code-display');
     const newGameButton = document.getElementById('new-game-button');
+    const bodyElement = document.body;
+    const gameConsole = document.querySelector('.game-console');
     const tokenButtons = document.querySelectorAll('.token-button');
     const newRoundButton = document.getElementById('new-round-button');
     const givenCluesButton = document.getElementById('given-clues-button');
@@ -29,6 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let wordBank = [];
     let roundNumber = 1;
     let myTeamClueHistory = [];
+    let isGameStarted = false;
 
     function randomColor() {
         const h = Math.floor(Math.random() * 360);
@@ -183,8 +186,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (newGameButton && settingsModal) {
         newGameButton.addEventListener('click', async () => {
-            await setupSettings();
-            settingsModal.classList.remove('hidden');
+            if (!isGameStarted) {
+                bodyElement.classList.remove('splash-active');
+                gameConsole.classList.remove('hidden');
+                isGameStarted = true;
+                setTimeout(async () => {
+                    await setupSettings();
+                    settingsModal.classList.remove('hidden');
+                }, 800);
+            } else {
+                await setupSettings();
+                settingsModal.classList.remove('hidden');
+            }
         });
     }
 
@@ -218,6 +231,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             settingsModal.classList.add('hidden');
+            gameConsole.classList.remove('hidden');
             startNewGame(filteredWords.map(item => item.word));
         });
     }
