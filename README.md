@@ -1,15 +1,26 @@
 # Desencripta
-Desencripta, juego
 
-## Running the Decrypto Simulation
+**Desencripta** es una versión digital inspirada en el juego de mesa **Decrypto**. 
+El proyecto recrea la mecánica de dar pistas y descifrar códigos de una forma sencilla y sin necesidad de servidor.
 
-The repository includes a standalone script `decrypto.py` that implements
-the core logic for a serverless version of Decrypto. You can run the
-script directly with Python to see a two-round example game:
+## Cómo jugar
+1. Abre `index.html` en tu navegador preferido para iniciar una partida.
+2. Pulsa el botón **New Game** para obtener cuatro palabras clave al azar.
+3. El cifrador de tu equipo hace clic en el disquete para recibir un código secreto (por ejemplo `4-1-2`) y escribe tres pistas.
+4. A partir de la segunda ronda los rivales pueden intentar interceptar la secuencia.
+5. Usa las casillas de notas para llevar el registro de las pistas enemigas.
+
+### Historial de pistas (tooltip)
+En la tarjeta del cifrador encontrarás el botón **Given Clues**. Al hacer clic se despliega un pequeño tooltip que muestra todas las pistas que tu equipo ha dado hasta el momento, junto con el número correcto al que correspondían.
+
+## Simulador en Python
+El repositorio incluye el script `decrypto.py`, que permite simular dos rondas completas de juego sin interfaz gráfica:
 
 ```bash
 python decrypto.py
 ```
 
-The script demonstrates how two devices (one for each team) keep their
-state in sync using a shared game seed.
+Así puedes ver cómo se sincronizarían los dispositivos de cada equipo usando la misma semilla de partida.
+
+## Apoya el juego original
+Este proyecto es solo un homenaje. Si te gusta la experiencia, ¡no dudes en comprar **Decrypto** y disfrutar del juegazo en toda su gloria de mesa!
