@@ -384,6 +384,9 @@ body {
     padding: 0 5px;
     margin-bottom: 5px;
 }
+.card-labels span {
+    font-family: var(--font-terminal);
+}
 .card-labels .label-clue {
     width: 100%;
 }
