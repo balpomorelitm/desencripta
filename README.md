@@ -13,14 +13,5 @@ El proyecto recrea la mecánica de dar pistas y descifrar códigos de una forma 
 ### Historial de pistas (tooltip)
 En la tarjeta del cifrador encontrarás el botón **Given Clues**. Al hacer clic se despliega un pequeño tooltip que muestra todas las pistas que tu equipo ha dado hasta el momento, junto con el número correcto al que correspondían.
 
-## Simulador en Python
-El repositorio incluye el script `decrypto.py`, que permite simular dos rondas completas de juego sin interfaz gráfica:
-
-```bash
-python decrypto.py
-```
-
-Así puedes ver cómo se sincronizarían los dispositivos de cada equipo usando la misma semilla de partida.
-
 ## Apoya el juego original
 Este proyecto es solo un homenaje. Si te gusta la experiencia, ¡no dudes en comprar **Decrypto** y disfrutar del juegazo en toda su gloria de mesa!
