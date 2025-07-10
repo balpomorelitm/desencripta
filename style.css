@@ -242,13 +242,13 @@ body {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
+    gap: 10px;
 }
 
 .code-generator-area {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-right: 20px;
     min-height: 50px;
 }
 
@@ -288,17 +288,43 @@ body {
 }
 
 /* --- 5. Token Display --- */
-.tokens-area {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    flex-grow: 1;
-}
-.token-group {
+/* New Token Area Layout */
+.token-column {
+    flex: 1;
+    max-width: 140px;
+    padding: 8px 5px;
+    border-radius: 6px;
+    border: 2px solid #555;
     text-align: center;
 }
-.token-group .ui-special-font {
-    font-size: 20px;
+
+.interception-column {
+    background-color: #fff;
+    color: #000;
+}
+
+.miscommunication-column {
+    background-color: #222;
+    color: #fff;
+}
+
+.token-column .token-label {
+    font-family: var(--font-ui-special);
+    font-size: 0.9em;
+    line-height: 1.1;
+    margin-bottom: 8px;
+    margin-top: 5px;
+}
+
+.miscommunication-column .token-label {
+    margin-top: 8px;
+    margin-bottom: 5px;
+}
+
+.token-buttons-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
 }
 .token-button {
     background: none;
@@ -316,7 +342,7 @@ body {
     opacity: 0.3;
     transition: opacity 0.2s;
 }
-.token-group .token-display.active {
+.token-display.active {
     opacity: 1;
     background: radial-gradient(circle at 50% 40%, #FF8A8A, var(--color-digital-red));
     box-shadow: 0 0 10px var(--color-digital-red),
