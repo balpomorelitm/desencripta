@@ -975,6 +975,9 @@ button.primary-action:hover {
         padding: 8px 4px;
         min-height: 40px;
     }
+    .token-column .token-label {
+        font-size: 0.63em;
+    }
 
     .clue-row {
         gap: 0;
