@@ -242,7 +242,7 @@ body {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
-    gap: 10px;
+    gap: 5px; /* Reduced space around the floppy disk */
 }
 
 .code-generator-area {
@@ -291,8 +291,8 @@ body {
 /* New Token Area Layout */
 .token-column {
     flex: 1;
-    max-width: 140px;
-    padding: 8px 5px;
+    max-width: 160px; /* Wider token boxes */
+    padding: 6px 4px; /* Reduced padding */
     border-radius: 6px;
     border: 2px solid #555;
     text-align: center;
@@ -324,7 +324,7 @@ body {
 .token-buttons-container {
     display: flex;
     justify-content: center;
-    gap: 10px;
+    gap: 6px; /* Narrower spacing between tokens */
 }
 .token-button {
     background: none;
@@ -387,6 +387,7 @@ body {
 .card-labels span {
     font-family: var(--font-terminal);
     text-transform: uppercase;
+
 }
 .card-labels .label-clue {
     width: 100%;
