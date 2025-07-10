@@ -378,7 +378,7 @@ body {
 .card-labels {
     display: grid;
     grid-template-columns: 70% 10% 10% 10%;
-    gap: 8px;
+    gap: 0;
     font-size: 0.8em;
     opacity: 0.7;
     padding: 0 5px;
@@ -386,6 +386,8 @@ body {
 }
 .card-labels span {
     font-family: var(--font-terminal);
+    text-transform: uppercase;
+
 }
 .card-labels .label-clue {
     width: 100%;
