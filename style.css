@@ -129,6 +129,42 @@ body {
     animation-delay: 1.2s;
 }
 
+/* --- Splash Screen Transition Elements --- */
+.title-container, .glitch, .header-buttons {
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.game-console {
+    transition: opacity 0.5s ease 0.5s; /* Fade in after a delay */
+}
+
+/* --- Splash Screen Active Styles --- */
+.splash-active {
+    overflow: hidden; /* Hide scrollbars on splash */
+}
+
+/* Center the header container on the splash screen */
+.splash-active .main-header {
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
+}
+
+/* Center and enlarge the title */
+.splash-active .glitch {
+    font-size: 10vw; /* Large title on splash */
+    text-align: center;
+    transform: none; /* No rotation on splash */
+}
+
+/* Position buttons below the title */
+.splash-active .header-buttons {
+    position: static; /* Not absolutely positioned on splash */
+    flex-direction: row;
+    gap: 20px;
+    margin-top: 30px;
+}
+
 /* --- 3. Main Game Console / Screen --- */
 .game-console {
     /* We need to ensure the console has a z-index to stay on top */
