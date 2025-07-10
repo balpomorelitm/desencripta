@@ -917,6 +917,22 @@ button.primary-action:hover {
         display: block;
     }
 
+    /* Center splash content on mobile */
+    body.splash-active {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    body.splash-active .main-header {
+        height: auto;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
     .main-header {
         display: flex;
         justify-content: space-between;
