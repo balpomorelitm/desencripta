@@ -377,11 +377,11 @@ body {
 /* New labels above clue inputs */
 .card-labels {
     display: grid;
-    grid-template-columns: 70% 10% 10% 10%;
+    grid-template-columns: 50% 16.66% 16.66% 16.66%;
     gap: 0;
     font-size: 0.8em;
     opacity: 0.7;
-    padding: 0 5px;
+    padding: 0;
     margin-bottom: 5px;
 }
 .card-labels span {
@@ -401,9 +401,9 @@ body {
 
 .clue-row {
     display: grid;
-    grid-template-columns: 70% 10% 10% 10%;
+    grid-template-columns: 50% 16.66% 16.66% 16.66%;
     align-items: center;
-    gap: 8px;
+    gap: 0;
     margin-bottom: 10px;
 }
 
@@ -850,7 +850,7 @@ button.primary-action:hover {
     }
 
     .clue-row {
-        gap: 5px;
+        gap: 0;
     }
     .clue-input {
         padding: 8px;
@@ -862,7 +862,7 @@ button.primary-action:hover {
         font-size: 1.2em;
     }
     .card-labels .label-guess {
-        width: 30px;
+        width: 100%;
     }
 
     .opponent-notes-grid {
