@@ -468,6 +468,10 @@ body {
     color: #888;
     padding: 10px 5px;
 }
+/* Align the first round label with the top row of clues */
+.round-labels-column span:first-child {
+    margin-top: 6px;
+}
 .opponent-notes-grid .clue-column textarea {
     width: 100%;
     box-sizing: border-box;
