@@ -453,35 +453,11 @@ body {
 
 .opponent-notes-grid {
     display: grid;
-    grid-template-columns: 40px repeat(4, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 8px;
     text-align: center;
 }
 
-/* NEW: Style for the round labels column */
-.round-labels-column {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    font-family: var(--font-terminal);
-    font-size: 1em;
-    color: #888;
-    padding: 10px 5px;
-    width: 40px;
-}
-.round-labels-column h4 {
-    margin: 0;
-    border-bottom: 1px solid;
-    padding-bottom: 5px;
-    font-family: var(--font-keyword);
-    font-size: 1.2em;
-}
-.white-team-theme .round-labels-column h4 { border-color: var(--color-white-team-border); }
-.black-team-theme .round-labels-column h4 { border-color: var(--color-black-team-border); }
-/* Align the first round label with the top row of clues */
-.round-labels-column span:first-of-type {
-    margin-top: 6px;
-}
 .opponent-notes-grid .clue-column textarea {
     width: 100%;
     box-sizing: border-box;
@@ -524,6 +500,19 @@ body {
 }
 .white-team-theme .clue-column h4 { border-color: var(--color-white-team-border); }
 .black-team-theme .clue-column h4 { border-color: var(--color-black-team-border); }
+
+.note-row {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.note-number {
+    width: 1.2em;
+    flex-shrink: 0;
+    font-family: var(--font-terminal);
+    color: #888;
+}
 
 .clue-item {
     font-family: var(--font-handwritten);
@@ -943,10 +932,6 @@ button.primary-action:hover {
     .opponent-notes-grid .clue-column textarea {
         height: 18px;
         font-size: 1em;
-    }
-    .round-labels-column {
-        font-size: 0.8em;
-        width: 30px;
     }
 }
 
