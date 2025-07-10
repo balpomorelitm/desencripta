@@ -6,7 +6,7 @@
     <title>Digital Decrypto</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bungee+Shade&family=Monofett&family=VT323&family=Workbench&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bungee+Shade&family=Monofett&family=Rampart+One&family=VT323&family=Workbench&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Orbitron:wght@500&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -20,8 +20,17 @@
             <div id="circle-xxlarge"></div>
         </div>
     </div>
+    <header class="main-header">
+        <div class="title-container">
+            <h1 class="glitch" data-text="DESENCRIPTA">DESENCRIPTA</h1>
+        </div>
+        <div class="header-buttons">
+            <button id="how-to-play-button">How to Play</button>
+            <button id="new-game-button" class="primary-action">New Game</button>
+        </div>
+    </header>
+
     <div class="game-console white-team-theme">
-        <button id="new-game-button" class="primary-action">New Game</button>
         <div class="keywords-container">
             <div class="keyword-slot"><span class="keyword-number">1</span></div>
             <div class="keyword-slot"><span class="keyword-number">2</span></div>
@@ -30,22 +39,25 @@
         </div>
 
         <div class="middle-section">
+            <div class="token-column interception-column">
+                <div class="token-label">Interception</div>
+                <div class="token-buttons-container">
+                    <button class="token-button"><div class="token-display token-interception"></div></button>
+                    <button class="token-button"><div class="token-display token-interception"></div></button>
+                </div>
+            </div>
+
             <div class="code-generator-area">
                 <button class="floppy-disk-button"></button>
                 <div class="code-display" style="display: none;"></div>
             </div>
 
-            <div class="tokens-area">
-                <div class="token-group">
-                    <div class="ui-special-font">Interception</div>
-                    <button class="token-button"><div class="token-display token-interception"></div></button>
-                    <button class="token-button"><div class="token-display token-interception"></div></button>
-                </div>
-                <div class="token-group">
-                    <div class="ui-special-font">Miscommunication</div>
+            <div class="token-column miscommunication-column">
+                <div class="token-buttons-container">
                     <button class="token-button"><div class="token-display token-miscommunication"></div></button>
                     <button class="token-button"><div class="token-display token-miscommunication"></div></button>
                 </div>
+                <div class="token-label">Miscommunication</div>
             </div>
         </div>
 
@@ -53,9 +65,9 @@
             <h3 id="round-counter" class="ui-special-font">ROUND 01</h3>
             <div class="card-labels">
                 <span class="label-clue">Clue</span>
-                <span class="label-guess">Team guess</span>
-                <span class="label-guess">Enemies guess</span>
-                <span class="label-guess">Correct Answer</span>
+                <span class="label-guess">TeamGuess</span>
+                <span class="label-guess">EnemiesGuess</span>
+                <span class="label-guess">CorrectAnswer</span>
             </div>
             <div class="clue-row">
                 <input type="text" class="clue-input" placeholder="Clue 1">
@@ -76,8 +88,8 @@
                 <input type="number" class="guess-box correct-answer-box" maxlength="1">
             </div>
             <div class="card-actions">
-                <button id="new-round-button">New Round</button>
-                <button id="given-clues-button">Given Clues</button>
+                <button id="new-round-button" class="retro-button">New Round</button>
+                <button id="given-clues-button" class="retro-button">Given Clues</button>
             </div>
 
             <div id="given-clues-tooltip" class="tooltip" style="display: none;"></div>
@@ -85,6 +97,11 @@
 
         <h3 class="ui-special-font enemy-clues-title">Enemies leaked clues 🔎</h3>
         <div class="opponent-notes-grid">
+            <div class="round-labels-column">
+                <span>R1</span><span>R2</span><span>R3</span><span>R4</span>
+                <span>R5</span><span>R6</span><span>R7</span><span>R8</span>
+            </div>
+
             <div class="clue-column">
                 <h4>1</h4>
                 <textarea></textarea>
@@ -131,6 +148,31 @@
             </div>
         </div>
     </div>
+
+    <div id="how-to-play-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <button class="modal-close-button">&times;</button>
+            <h2>How to Play</h2>
+
+            <h4>The Goal</h4>
+            <p>Your team wins by guessing the other team's code twice (<b>2 Interception Tokens</b>). You lose if you miss your own code twice (<b>2 Miscommunication Tokens</b>).</p>
+
+            <h4>Gameplay Loop (each round)</h4>
+            <ol>
+
+                <li>One player on your team, the <strong>Encryptor</strong>, gets a secret 3-digit code (e.g., 4-1-2) by clicking in the disquette 💾.</li>
+                <li>The Encryptor writes and gives three clues aloud, one for each keyword corresponding to the code.</li>
+                <li>Both teams try to guess the secret code. Interceptions are only allowed from Round 2 onwards (In the first round only the Encryptors team will guess).</li>
+                <li>After guesses are revealed, tokens are awarded ⚪⚫ and you must write down the opponent's clues in the correct columns on your sheet.</li>
+
+            </ol>
+
+            <p class="attribution">
+                This is a fan-made project based on the board game <strong>DECRYPTO</strong>. If you enjoy it, please support the creators by buying the original game!
+            </p>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>

@@ -136,7 +136,7 @@ body {
     position: relative;
     margin: auto; /* Helps with centering and scrolling behavior */
     width: 100%;
-    max-width: 500px;
+    max-width: 600px;
     padding: 20px;
     border-radius: 12px;
     border: 3px solid;
@@ -204,7 +204,7 @@ body {
 
 /* Larger centered title for the opponent clues section */
 .enemy-clues-title {
-    font-size: 2.4em; /* Double the default size */
+    font-size: 1.92em; /* 20% smaller than before */
     text-align: center;
 }
 
@@ -242,13 +242,13 @@ body {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
+    gap: 5px; /* Reduced space around the floppy disk */
 }
 
 .code-generator-area {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-right: 20px;
     min-height: 50px;
 }
 
@@ -288,14 +288,43 @@ body {
 }
 
 /* --- 5. Token Display --- */
-.tokens-area {
+/* New Token Area Layout */
+.token-column {
+    flex: 1;
+    max-width: 160px; /* Wider token boxes */
+    padding: 6px 4px; /* Reduced padding */
+    border-radius: 6px;
+    border: 2px solid #555;
+    text-align: center;
+}
+
+.interception-column {
+    background-color: #fff;
+    color: #000;
+}
+
+.miscommunication-column {
+    background-color: #222;
+    color: #fff;
+}
+
+.token-column .token-label {
+    font-family: var(--font-ui-special);
+    font-size: 0.9em;
+    line-height: 1.1;
+    margin-bottom: 8px;
+    margin-top: 5px;
+}
+
+.miscommunication-column .token-label {
+    margin-top: 8px;
+    margin-bottom: 5px;
+}
+
+.token-buttons-container {
     display: flex;
     justify-content: center;
-    gap: 20px;
-    flex-grow: 1;
-}
-.token-group {
-    text-align: center;
+    gap: 6px; /* Narrower spacing between tokens */
 }
 .token-button {
     background: none;
@@ -305,15 +334,15 @@ body {
 }
 .token-display {
     display: inline-block;
-    width: 30px;
-    height: 30px;
+    width: 15px;
+    height: 15px;
     border-radius: 50%;
-    border: 3px solid var(--token-border);
-    margin: 0 5px;
+    border: 2px solid var(--token-border);
+    margin: 0 3px;
     opacity: 0.3;
     transition: opacity 0.2s;
 }
-.token-group .token-display.active {
+.token-display.active {
     opacity: 1;
     background: radial-gradient(circle at 50% 40%, #FF8A8A, var(--color-digital-red));
     box-shadow: 0 0 10px var(--color-digital-red),
@@ -349,11 +378,16 @@ body {
 .card-labels {
     display: grid;
     grid-template-columns: 70% 10% 10% 10%;
-    gap: 8px;
+    gap: 0;
     font-size: 0.8em;
     opacity: 0.7;
     padding: 0 5px;
     margin-bottom: 5px;
+}
+.card-labels span {
+    font-family: var(--font-terminal);
+    text-transform: uppercase;
+
 }
 .card-labels .label-clue {
     width: 100%;
@@ -419,12 +453,24 @@ body {
 
 .opponent-notes-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: auto repeat(4, 1fr);
     gap: 8px;
     text-align: center;
 }
+
+/* NEW: Style for the round labels column */
+.round-labels-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    font-family: var(--font-terminal);
+    font-size: 1em;
+    color: #888;
+    padding: 10px 5px;
+}
 .opponent-notes-grid .clue-column textarea {
-    width: calc(100% - 12px);
+    width: 100%;
+    box-sizing: border-box;
     background-color: transparent;
     border: none;
     border-bottom: 1px solid;
@@ -448,7 +494,7 @@ body {
 .clue-column {
     border: 2px solid;
     border-radius: 6px;
-    padding: 10px;
+    padding: 5px; /* reduce internal spacing */
     min-height: 150px;
 }
 .white-team-theme .clue-column { border-color: var(--color-white-team-border); }
@@ -456,8 +502,11 @@ body {
 
 .clue-column h4 {
     margin-top: 0;
+    margin-bottom: 0; /* Ensure consistent spacing for R1 textareas */
     border-bottom: 1px solid;
     padding-bottom: 5px;
+    font-family: var(--font-keyword);
+    font-size: 1.5em;
 }
 .white-team-theme .clue-column h4 { border-color: var(--color-white-team-border); }
 .black-team-theme .clue-column h4 { border-color: var(--color-black-team-border); }
@@ -510,14 +559,35 @@ button.primary-action:hover {
     background-color: #b00000;
 }
 
-/* Persistent new game button */
+/* Retro style for "New Round" and "Given Clues" buttons */
+.retro-button {
+    font-family: var(--font-terminal);
+    font-size: 1.1em;
+    text-transform: uppercase;
+    background-color: #E0E0E0;
+    color: #222;
+    border: 2px solid #555;
+    border-radius: 5px;
+    box-shadow: inset -2px -2px 0px rgba(0,0,0,0.25);
+    cursor: pointer;
+    transition: all 0.1s ease;
+}
+
+.retro-button:active {
+    box-shadow: inset 2px 2px 0px rgba(0,0,0,0.25);
+    transform: translateY(1px);
+}
+
+.black-team-theme .retro-button {
+    background-color: #555;
+    color: #E0E0E0;
+    border-color: #222;
+}
+
+/* Base style for the main action button */
 #new-game-button {
-    position: fixed;
-    top: 20px;
-    right: 20px;
     width: auto;
     padding: 10px 20px;
-    z-index: 1000;
     font-size: 1em;
 }
 
@@ -530,3 +600,312 @@ button.primary-action:hover {
     }
 }
 
+
+/* --- "How to Play" Button --- */
+#how-to-play-button {
+    width: auto;
+    padding: 8px 15px;
+    font-size: 0.8em;
+    background-color: #555;
+    color: white;
+}
+
+#how-to-play-button:hover {
+    background-color: #777;
+}
+
+/* --- Modal Styles --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+}
+
+.modal-content {
+    background: var(--color-white-team-bg, #DCDCDC);
+    color: var(--color-white-team-text, #222);
+    padding: 20px 30px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+}
+
+.black-team-theme .modal-content {
+    background: var(--color-black-team-bg, #333);
+    color: var(--color-black-team-text, #E0E0E0);
+}
+
+.modal-close-button {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 2em;
+    background: none;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+}
+
+.modal-content h2 {
+    font-family: var(--font-ui-special, 'Monofett');
+    text-align: center;
+    margin-top: 0;
+}
+
+.modal-content .attribution {
+    font-size: 0.9em;
+    text-align: center;
+    opacity: 0.8;
+    margin-top: 20px;
+}
+
+/* Utility class to hide elements */
+.hidden {
+    display: none !important;
+}
+
+/* --- Animated Glitch Title --- */
+.title-container {
+    /* Initially hidden for the reveal animation */
+    opacity: 0;
+    animation: fadeIn 0.5s ease 1.5s forwards; /* Fades in after the glitch reveal */
+    position: relative;
+    z-index: 1;
+}
+
+.glitch {
+    font-family: 'Rampart One', sans-serif;
+    font-size: 2.1vw; /* Reduced size */
+    color: #fff;
+    position: relative;
+    letter-spacing: 0.1em;
+    text-shadow:
+        0 0 5px rgba(109, 230, 248, 0.4),
+        0 0 10px rgba(109, 230, 248, 0.4);
+
+    /* Reveal Animation */
+    animation: reveal-glitch 2s ease-out forwards;
+}
+
+/* Glitch pseudo-elements (the red/blue copies) */
+.glitch::before,
+.glitch::after {
+    content: attr(data-text); /* Uses the text from the data-text attribute */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    clip-path: inset(0 0 0 0); /* No clipping initially */
+}
+
+.glitch::before {
+    left: -2px;
+    text-shadow: 1px 0 #ff3f65; /* Magenta/Red glow */
+    animation: glitch-anim-1 2s infinite linear alternate-reverse;
+}
+
+.glitch::after {
+    left: 2px;
+    text-shadow: -1px 0 #00d8ff; /* Cyan glow */
+    animation: glitch-anim-2 2s infinite linear alternate-reverse;
+}
+
+/* --- Keyframe Animations --- */
+
+/* Glitch effect for pseudo-elements */
+@keyframes glitch-anim-1 {
+    0% { clip-path: inset(45% 0 50% 0); }
+    25% { clip-path: inset(10% 0 82% 0); }
+    50% { clip-path: inset(80% 0 5% 0); }
+    75% { clip-path: inset(40% 0 55% 0); }
+    100% { clip-path: inset(60% 0 32% 0); }
+}
+
+@keyframes glitch-anim-2 {
+    0% { clip-path: inset(15% 0 80% 0); }
+    25% { clip-path: inset(90% 0 5% 0); }
+    50% { clip-path: inset(20% 0 75% 0); }
+    75% { clip-path: inset(65% 0 20% 0); }
+    100% { clip-path: inset(30% 0 68% 0); }
+}
+
+/* Reveal animation (the "over the top" part) */
+@keyframes reveal-glitch {
+  0% { text-shadow: none; color: transparent; }
+  20% { color: #fff; text-shadow: 2px 2px #ff3f65, -2px -2px #00d8ff; }
+  60% { color: #fff; text-shadow: none; }
+  100% { color: #fff; }
+}
+
+/* Fade-in for the container after reveal */
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+/* --- Media Query for Wide Screens --- */
+/* On screens wider than 1024px */
+@media (min-width: 1024px) {
+    body {
+        position: relative;
+        overflow-x: hidden;
+    }
+
+    .main-header {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+    }
+
+    .title-container {
+        position: absolute;
+        top: 50%;
+        left: 5%;
+        transform: translateY(-50%) rotate(-15deg);
+        transform-origin: center;
+    }
+
+    .glitch {
+        font-size: 3.5vw;
+    }
+
+    .header-buttons {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        display: flex;
+        gap: 10px;
+        pointer-events: auto;
+    }
+
+
+    .game-console {
+        margin: auto;
+    }
+}
+
+/* --- MOBILE & TABLET LAYOUT --- */
+@media (max-width: 1023px) {
+    body {
+        padding: 10px;
+        display: block;
+    }
+
+    .main-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+    }
+
+    .title-container {
+        transform: none;
+        padding: 0;
+        flex-grow: 1;
+    }
+
+    .glitch {
+        font-size: 5.6vw;
+        text-align: left;
+    }
+
+    .header-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    #new-game-button, #how-to-play-button {
+        position: static;
+        width: 100px;
+        font-size: 0.7em;
+        padding: 8px;
+    }
+
+    .game-console {
+        width: 100%;
+        padding: 15px;
+        box-sizing: border-box;
+    }
+
+    .keyword-slot {
+        font-size: 0.9em;
+        padding: 8px 4px;
+        min-height: 40px;
+    }
+
+    .clue-row {
+        gap: 5px;
+    }
+    .clue-input {
+        padding: 8px;
+        font-size: 0.9em;
+    }
+    .guess-box {
+        width: 30px;
+        height: 30px;
+        font-size: 1.2em;
+    }
+    .card-labels .label-guess {
+        width: 30px;
+    }
+
+    .opponent-notes-grid {
+        gap: 5px;
+    }
+    .opponent-notes-grid .clue-column textarea {
+        height: 18px;
+        font-size: 1em;
+    }
+    .round-labels-column {
+        font-size: 0.8em;
+    }
+}
+
+/* --- Fullscreen Scanline Background Effect --- */
+body::after {
+    content: "";
+    position: fixed; /* Covers the entire viewport */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Allows clicks to go through */
+    background: linear-gradient(
+        rgba(18, 16, 16, 0) 50%,
+        rgba(0, 0, 0, 0.25) 50%
+    ), linear-gradient(
+        90deg, 
+        rgba(255, 0, 0, 0.06), 
+        rgba(0, 255, 0, 0.02), 
+        rgba(0, 0, 255, 0.06)
+    );
+    background-size: 100% 4px, 100% 100%;
+    z-index: 0; /* Positioned behind content */
+    animation: scanline-anim 15s linear infinite;
+}
+
+/* Animates the scanlines moving down the screen */
+@keyframes scanline-anim {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: 0 -100vh;
+    }
+}

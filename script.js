@@ -176,6 +176,29 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // --- Modal Logic for "How to Play" ---
+    const howToPlayButton = document.getElementById('how-to-play-button');
+    const modal = document.getElementById('how-to-play-modal');
+    const closeModalButton = modal ? modal.querySelector('.modal-close-button') : null;
+
+    if (howToPlayButton && modal && closeModalButton) {
+        const openModal = () => {
+            modal.classList.remove('hidden');
+        };
+
+        const closeModal = () => {
+            modal.classList.add('hidden');
+        };
+
+        howToPlayButton.addEventListener('click', openModal);
+        closeModalButton.addEventListener('click', closeModal);
+
+        modal.addEventListener('click', (event) => {
+            if (event.target === modal) {
+                closeModal();
+            }
+        });
+    }
     // Initial background on page load
     if (window.generateRandomGradient) {
         window.generateRandomGradient();
