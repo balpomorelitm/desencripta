@@ -15,6 +15,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const noteAreas = document.querySelectorAll('.opponent-notes-grid textarea');
     const keywordSlots = document.querySelectorAll('.keyword-slot');
 
+    // Elements for the settings modal
+    const settingsModal = document.getElementById('settings-modal');
+    const closeSettingsButton = settingsModal ? settingsModal.querySelector('.modal-close-button') : null;
+    const startGameButton = document.getElementById('start-game-button');
+    const levelContainer = document.getElementById('level-selection-container');
+    const tagContainer = document.getElementById('tag-selection-container');
+    const toggleTagsButton = document.getElementById('toggle-tags-button');
+
+    let masterWordBank = [];
+    let allTags = [];
+
     let wordBank = [];
     let roundNumber = 1;
     let myTeamClueHistory = [];
@@ -63,6 +74,10 @@ document.addEventListener('DOMContentLoaded', () => {
     function pickRandomWords(count = 4) {
         const available = [...wordBank];
         const selected = [];
+        if (available.length < count) {
+            console.error("Not enough words in the bank to pick from.");
+            return new Array(count).fill("----");
+        }
         for (let i = 0; i < count; i++) {
             const idx = Math.floor(Math.random() * available.length);
             selected.push(available.splice(idx, 1)[0]);
@@ -86,8 +101,51 @@ document.addEventListener('DOMContentLoaded', () => {
         noteAreas.forEach(area => area.value = '');
     }
 
-    async function startNewGame() {
-        await loadWordBank();
+    // --- Game Settings Modal Logic ---
+    function createCheckbox(id, value, label, checked = false) {
+        const item = document.createElement('label');
+        item.className = 'checkbox-item';
+        item.htmlFor = id;
+
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.id = id;
+        checkbox.value = value;
+        checkbox.checked = checked;
+
+        item.appendChild(checkbox);
+        item.appendChild(document.createTextNode(label));
+        return item;
+    }
+
+    async function setupSettings() {
+        if (masterWordBank.length) return;
+
+        const response = await fetch('keywords.json');
+        masterWordBank = await response.json();
+
+        const levels = [...new Set(masterWordBank.map(item => item.level))].sort();
+        allTags = [...new Set(masterWordBank.map(item => item.tag))].sort();
+
+        levels.forEach(level => {
+            const isDefault = level === 'A1';
+            const checkbox = createCheckbox(`level-${level}`, level, level.toUpperCase(), isDefault);
+            levelContainer.appendChild(checkbox);
+        });
+
+        allTags.forEach(tag => {
+            const isDefault = tag !== 'país';
+            const checkbox = createCheckbox(`tag-${tag}`, tag, tag, isDefault);
+            tagContainer.appendChild(checkbox);
+        });
+    }
+
+    async function startNewGame(customWordList = null) {
+        if (!customWordList) {
+            await loadWordBank();
+        } else {
+            wordBank = customWordList;
+        }
         const words = pickRandomWords(4);
         displayKeywords(words);
         resetTokens();
@@ -123,9 +181,44 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    if (newGameButton) {
-        newGameButton.addEventListener('click', () => {
-            startNewGame();
+    if (newGameButton && settingsModal) {
+        newGameButton.addEventListener('click', async () => {
+            await setupSettings();
+            settingsModal.classList.remove('hidden');
+        });
+    }
+
+    if (closeSettingsButton) {
+        closeSettingsButton.addEventListener('click', () => {
+            settingsModal.classList.add('hidden');
+        });
+    }
+
+    if (toggleTagsButton) {
+        toggleTagsButton.addEventListener('click', () => {
+            const checkboxes = tagContainer.querySelectorAll('input[type="checkbox"]');
+            const isSelectAll = toggleTagsButton.textContent === 'Select All';
+            checkboxes.forEach(cb => cb.checked = isSelectAll);
+            toggleTagsButton.textContent = isSelectAll ? 'Select None' : 'Select All';
+        });
+    }
+
+    if (startGameButton) {
+        startGameButton.addEventListener('click', () => {
+            const selectedLevels = Array.from(levelContainer.querySelectorAll('input:checked')).map(cb => cb.value);
+            const selectedTags = Array.from(tagContainer.querySelectorAll('input:checked')).map(cb => cb.value);
+
+            const filteredWords = masterWordBank.filter(word => {
+                return selectedLevels.includes(word.level) && selectedTags.includes(word.tag);
+            });
+
+            if (filteredWords.length < 4) {
+                alert('Not enough words with the selected criteria. Please select more levels or tags.');
+                return;
+            }
+
+            settingsModal.classList.add('hidden');
+            startNewGame(filteredWords.map(item => item.word));
         });
     }
 
